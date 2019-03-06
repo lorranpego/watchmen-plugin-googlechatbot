@@ -1,7 +1,7 @@
 {
   "name": "watchmen-plugin-googlechatbot",
-  "version": "0.1.0",
-  "description": "Notifications via ChatBot for Watchmen",
+  "version": "0.1.1",
+  "description": "Notifications via ChatBot for Watchmen mainly intended for Google Hangouts Chat",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -17,5 +17,13 @@
     "dotenv": "^1.2.0",
     "glob": "^6.0.1",
     "handlebars": "^4.0.5"
-  }
+  },
+  "deprecated": false,
+  "license": "MIT",
+  "keywords": [
+    "notification",
+    "watchmen",
+    "chatbot",
+    "node"
+  ]
 }
