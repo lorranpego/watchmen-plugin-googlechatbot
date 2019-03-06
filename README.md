@@ -9,14 +9,12 @@ Inspired by [watchmen-plugin-nodemailer](https://github.com/wiseNhammer/watchmen
 
 This plugin comes with default templates written in
 [Handlebars](http://handlebarsjs.com/)
-for new outages and service back events. Each event has a body and subject
-template.
+for new outages and service back events. Each event has a body template.
 
 You can override templates by copying the included template folder into a new
 location and specifying this in your environment variables (see below).
 
-Body templates must go in `templates/body` and subject templates in
-`templates/subject`
+Message templates must go in `templates/body`.
 
 Their filenames should correspond to the watchmen event they're for. For
 example, `templates/body/new-outage.hbs`. The plugin will compile all templates
@@ -41,4 +39,21 @@ directory—overriding the default included templates as explained above.
 ```
 WATCHMEN_BOT_URI=https://chatbot.example.com/ext/message
 WATCHMEN_BOT_TEMPLATE_DIRECTORY=/home/watchmen/templates
+```
+
+##  Sending Message
+
+This plugin will sent a message with Axios always using `POST` method to the End-point provided and include the parameter `message` on the request's body.
+
+Example:
+```js
+axios.post(process.env.WATCHMEN_BOT_URI, {
+    message: sMessage,
+})
+.then(function (response) {
+    console.log("Message sent: ", sMessage);
+})
+.catch(function (error) {
+    messageError();
+});
 ```
