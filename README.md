@@ -9,14 +9,12 @@ Inspired by [watchmen-plugin-nodemailer](https://github.com/wiseNhammer/watchmen
 
 This plugin comes with default templates written in
 [Handlebars](http://handlebarsjs.com/)
-for new outages and service back events. Each event has a body and subject
-template.
+for new outages and service back events. Each event has a body template.
 
 You can override templates by copying the included template folder into a new
 location and specifying this in your environment variables (see below).
 
-Body templates must go in `templates/body` and subject templates in
-`templates/subject`
+Message templates must go in `templates/body`.
 
 Their filenames should correspond to the watchmen event they're for. For
 example, `templates/body/new-outage.hbs`. The plugin will compile all templates
