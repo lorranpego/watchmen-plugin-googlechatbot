@@ -47,9 +47,9 @@ function get_templates(base_directory)
 /*
  * Check if using default template location or one defined in environment
  */
-const p = path.join(__dirname, 'templates');
-if ('WATCHMEN_MAILER_TEMPLATE_DIRECTORY' in process.env) {
-  p = process.env.WATCHMEN_MAILER_TEMPLATE_DIRECTORY;
+let p = path.join(__dirname, 'templates');
+if ('WATCHMEN_BOT_TEMPLATE_DIRECTORY' in process.env) {
+  p = process.env.WATCHMEN_BOT_TEMPLATE_DIRECTORY;
   console.log('Loading templates from ' + p + ' instead of default templates.');
 }
 const templates = get_templates(p);
@@ -86,13 +86,13 @@ function handleEvent(eventName)
     // Pass this stuff into the templates
     let context = { service: service, data: data };
 
-    let message = templates.body[eventName](context);
+    let sMessage = templates.body[eventName](context);
 
     axios.post(process.env.WATCHMEN_BOT_URI, {
-      message: 'message',
+      message: sMessage,
     })
     .then(function (response) {
-      console.log("Message sent");
+      console.log("Message sent: ", sMessage);
     })
     .catch(function (error) {
       messageError();
@@ -102,9 +102,9 @@ function handleEvent(eventName)
 
 /*
  * Any event from watchmen can have a template associated with it. If there's
- * one in templates/body/, an email will be sent to notify support teams!
+ * one in templates/body/, a message will be sent to notify support teams!
  */
-function NodemailerPlugin(watchmen) {
+function ChatBotPlugin(watchmen) {
   watchmen.on('latency-warning', handleEvent('latency-warning'));
   watchmen.on('new-outage',      handleEvent('new-outage'));
   watchmen.on('current-outage',  handleEvent('current-outage'));
@@ -113,4 +113,4 @@ function NodemailerPlugin(watchmen) {
   watchmen.on('service-ok',      handleEvent('service-ok'));
 }
 
-exports = module.exports = NodemailerPlugin;
+exports = module.exports = ChatBotPlugin;
