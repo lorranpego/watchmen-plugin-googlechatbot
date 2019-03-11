@@ -12,10 +12,17 @@
     "email": "lorranpego@gmail.com",
     "url": "https://gitlab.com/lorranpego"
   },
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^1.2.0",
     "glob": "^6.0.1",
     "handlebars": "^4.0.5"
-  }
+  },
+  "keywords": [
+    "notification",
+    "watchmen",
+    "chatbot",
+    "node"
+  ]
 }
